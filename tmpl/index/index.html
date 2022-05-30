@@ -4,6 +4,59 @@
   body {
     padding: 16px;
   }
+  img {
+    max-width: 100%;
+  }
+
+  #url-data {
+    max-width: 100%;
+    word-break: break-all;
+  }
+
+  a {
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .footer {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-image: url('http://bz.mo7.cc/api/public/bz?idx=1');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .footer a {
+    color: #fff;
+  }
+
+  #footer-wrap {
+    width: 100%;
+    text-align: center;
+    display: block;
+    padding: 20px 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    font-size: 16px;
+  }
+
+  .footer_custom_text {
+    margin-top: 20px;
+    font-size: 12px;
+  }
+
+  .footer_custom_text a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .icp-icon {
+    width: 14px;
+    margin-right: 4px;
+  }
 </style>
 
 <body>
@@ -12,34 +65,69 @@
   <div>当前服务版本: {{.AppPackage.Version}}</div>
 
   <br />
+
+  文档说明 & 仓库地址 ：
+  <a target="_blank" href="https://github.com/EasyGolang/Wallpaper.net">
+    https://github.com/EasyGolang/Wallpaper.net
+  </a>
+
+  <br />
+  <br />
+
+  <hr />
+
+  标签引用示例：
+  <br />
+  <br />
+  http://bz.mo7.cc/api/public/bz?idx=1
+  <br />
+  <br />
+
+  <img src="//bz.mo7.cc/api/public/bz?idx=1" alt="" srcset="" />
+  <br />
+  <br />
+  http://bz.mo7.cc/api/public/bz
+  <br />
+  <br />
+  <img src="//bz.mo7.cc/api/public/bz" alt="" srcset="" />
+  <hr />
+  <br />
+  <br />
+  接口请求示例： http://bz.mo7.cc/api/public/url
+  <br />
+  <br />
+  请求结果：
+  <div id="url-data"></div>
+  <br />
+  <br />
+  <div class="footer">
+    <div id="footer-wrap">
+      <div class="copyright">©2018 - 2022 By 墨七</div>
+      <div class="footer_custom_text">
+        <a href="//beian.miit.gov.cn">
+          <img class="icp-icon" src="//file.mo7.cc/blog/icp.png" />
+          <span>陕 ICP 备 20002897 号 - 3</span>
+        </a>
+      </div>
+    </div>
+  </div>
 </body>
 <script type="module">
-  function GetList() {
-    http
-      .ajax({
-        url: '/api/public/shell_run',
-        data: {
-          Password: password,
-          ShellID: Number(key),
-        },
-        method: 'post',
-      })
-      .then((res) => {
-        const data = res.data;
-        $('#resMsg').html(data.Msg);
-        $('#resData').html(data.Data);
-
-        if (data.Code > 0) {
-          this.disabled = false;
-          $('#res').css('border-color', 'green');
-        } else {
-          $('#res').css('border-color', 'red');
-        }
-
-        if (data.Code === -6) {
-          this.disabled = false;
-        }
+  http
+    .ajax({
+      url: '/api/public/url',
+      data: {
+        idx: '0',
+      },
+      method: 'get',
+    })
+    .then((res) => {
+      let elmStr = '';
+      res.data.Data.map((item) => {
+        const aElm = `<a target="_blank" href="${item.Path}">${item.Path}</a>`;
+        elmStr += aElm;
       });
-  }
+      $('#url-data').html(elmStr);
+    });
 </script>
 {{template "public/footer.tmpl" .}} {{ end }}
