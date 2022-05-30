@@ -15,3 +15,6 @@ outPutPath=${path}"/dist"
 
 # 配置文件
 userEnv=${path}"/user_config.yaml"
+
+# 部署目录
+deployPath="/root/ProdProject/"${startName}
