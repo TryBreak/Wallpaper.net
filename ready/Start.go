@@ -1,10 +1,8 @@
 package ready
 
 import (
-	"fmt"
 	"time"
 
-	"Wallpaper.net/global/config"
 	"Wallpaper.net/utils/bingData"
 	"github.com/EasyGolang/goTools/mCycle"
 )
@@ -14,8 +12,6 @@ func Start() {
 		Func:      GetBingImg,
 		SleepTime: time.Hour * 4,
 	}).Start()
-
-	fmt.Println(config.BingImg)
 }
 
 func GetBingImg() {
