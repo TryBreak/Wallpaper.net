@@ -7,7 +7,7 @@ echo " =========== 正在进行编译 =========== "
 
 set GOARCH=amd64
 go mod tidy &&
-  GOOS=linux GOARCH=amd64 go build -o ${buildName} -tags=jsoniter . &&
+  go build -o ${buildName} -tags=jsoniter . &&
   echo "编译 完成"
 
 echo " =========== 开始进行 文件整理 =========== "
