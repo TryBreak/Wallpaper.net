@@ -1,18 +1,36 @@
-# Build and Release Folders
-bin-debug/
-bin-release/
-[Oo]bj/
-[Bb]in/
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
 
-# Other files and folders
-.settings/
+HunterUserFile
 
-# Executables
-*.swf
-*.air
-*.ipa
-*.apk
+package-lock.json
 
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
-# should NOT be excluded as they contain compiler settings and other important
-# information for Eclipse / Flash Builder.
+*.work
+
+*.sum
+
+server_env.yaml
+
+node_modules
+
+logs
+
+*.log
+dist
+/jsonData
+/www
+hunter_release
+*.zip
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# Dependency directories (remove the comment below to include it)
+# vendor/

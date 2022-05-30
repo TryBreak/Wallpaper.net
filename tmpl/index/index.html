@@ -1,0 +1,90 @@
+{{ define "index/index.tmpl" }} {{template "public/header.tmpl" .}}
+
+<style>
+  body {
+    padding: 16px;
+  }
+  .btnWrapper {
+    margin: 12px auto;
+  }
+  .pwdInput {
+    width: 200px;
+  }
+  #res {
+    border: 3px solid cornflowerblue;
+  }
+  #res div {
+    padding: 10px;
+    white-space: pre-line;
+  }
+</style>
+
+<body>
+  <h1>Wallpaper.net</h1>
+
+  <div>当前服务版本: {{.AppPackage.Version}}</div>
+
+  <br />
+  <div class="pwdInput ui input">
+    <input type="password" id="password" placeholder="请输入密码" />
+  </div>
+  <br />
+  <div>
+    {{ range $i, $v := .ShellList }}
+    <div class="btnWrapper">
+      <button class="runShellBtn ui primary button" key="{{$v.ID}}">
+        执行
+        <span> {{ $v.Name }} </span>
+      </button>
+    </div>
+    {{ end }}
+  </div>
+
+  <h3>脚本执行结果:</h3>
+  <div id="res">
+    <div id="resMsg"></div>
+    <div id="resData"></div>
+  </div>
+</body>
+<script type="module">
+  $('.runShellBtn').click(HandleShell);
+
+  function HandleShell() {
+    const key = $(this).attr('key');
+    const password = $('#password').val();
+
+    this.disabled = true;
+
+    $('#resMsg').html('脚本执行中。。。');
+    $('#resData').html('');
+
+    $('#res').css('border-color', 'cornflowerblue');
+
+    http
+      .ajax({
+        url: '/api/public/shell_run',
+        data: {
+          Password: password,
+          ShellID: Number(key),
+        },
+        method: 'post',
+      })
+      .then((res) => {
+        const data = res.data;
+        $('#resMsg').html(data.Msg);
+        $('#resData').html(data.Data);
+
+        if (data.Code > 0) {
+          this.disabled = false;
+          $('#res').css('border-color', 'green');
+        } else {
+          $('#res').css('border-color', 'red');
+        }
+
+        if (data.Code === -6) {
+          this.disabled = false;
+        }
+      });
+  }
+</script>
+{{template "public/footer.tmpl" .}} {{ end }}
