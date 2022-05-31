@@ -65,9 +65,9 @@ https://bz.mo7.cc/api/public/bz
 使用方法
 
 ```html
-<img src="http://bz.mo7.cc/api/public/bz" alt="" />
-<img src="http://bz.mo7.cc/api/public/bz?idx=1" alt="" />
-<img src="http://bz.mo7.cc/api/public/bz?idx=1" alt="" />
+<img src="//bz.mo7.cc/api/public/bz" alt="" />
+<img src="//bz.mo7.cc/api/public/bz?idx=1" alt="" />
+<img src="//bz.mo7.cc/api/public/bz?idx=1" alt="" />
 ```
 
 效果如下图
