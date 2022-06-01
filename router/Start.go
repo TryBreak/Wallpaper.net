@@ -13,6 +13,7 @@ import (
 	"Wallpaper.net/router/middleWare"
 	"Wallpaper.net/router/private"
 	"Wallpaper.net/router/public"
+	"Wallpaper.net/router/public/bing"
 	"Wallpaper.net/tmpl"
 	"github.com/EasyGolang/goTools/mStr"
 	"github.com/gin-gonic/gin"
@@ -40,6 +41,7 @@ func Start() {
 
 	// page index 首页
 	router.GET("/", Index)
+	router.GET("/bz", bing.GetBZ)
 	router.GET("/index", Index)
 
 	api_g := router.Group("/api")
