@@ -1,6 +1,6 @@
 {
   "name": "wallpaper-net",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "scripts": {
     "git": "./_shell/gitSet.sh",
     "sync": "./_shell/sync_git.sh",
