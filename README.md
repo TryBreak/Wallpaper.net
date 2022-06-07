@@ -1,6 +1,6 @@
 # Wallpaper.net
 
-> 该项目已停止维护,服务转移至
+> 该项目已停止维护,服务转移至 https://file.mo7.cc/daily_img
 
 golang 实现获取 每日一图，每 8 小时自动更新一次 ， 跟 bing 每日一图保持一致
 
